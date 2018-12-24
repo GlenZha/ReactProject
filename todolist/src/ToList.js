@@ -2,9 +2,11 @@ import React,{Component,Fragment} from "react";
 import './style.css';
 //Fragment占位符，可以让标签隐藏掉，少个包裹的标签
 import ToItem from "./ToItem";
+import Test from "./Test"
 class ToList extends Component{
     constructor(props){
         super(props);
+        //当组件的state或者props发生改变的时候，render函数就会重新执行
         this.state={
             inputValue:'',
             list:['react','vue']
@@ -25,6 +27,7 @@ class ToList extends Component{
                 <li>{this.state.inputValue}</li>
                 {this.getToItem()}
             </ul>
+            <Test content={this.state.inputValue}/>
         </Fragment>)
     }
     getToItem(){
