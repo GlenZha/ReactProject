@@ -40,6 +40,7 @@ class ToList extends Component{
     }
     handleItemDele(index){
         console.log(index);
+        //不允许直接修改sate的值，拷贝出一个副本进行修改
         const list=[...this.state.list];
         list.splice(index,1);
         this.setState({
