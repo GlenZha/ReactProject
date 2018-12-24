@@ -1,4 +1,5 @@
 import React,{Component,Fragment} from "react";
+import './style.css';
 //Fragment占位符，可以让标签隐藏掉，少个包裹的标签
 class ToList extends Component{
     constructor(props){
@@ -10,14 +11,18 @@ class ToList extends Component{
     }
     render() {
         return (<Fragment>
-            {/*bind(this)绑定this的指向*/}
-            <input value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}/><button onClick={this.handBtnClick.bind(this)}>提交</button>
+            {/*bind(this)绑定this的指向
+            htmlFor='insert'等于for，点击相当于点击了id=insert的元素
+            */}
+            <label htmlFor='insert'>输入内容</label>
+            <input id='insert' className="input" value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}/><button onClick={this.handBtnClick.bind(this)}>提交</button>
             <ul>
                 <li>英语</li>
                 <li>{this.state.inputValue}</li>
                 {
                     this.state.list.map((item,index)=>{
-                        return <li key={index} onClick={this.handleItemDele.bind(this,index)}>{item}</li>
+                        //dangerouslySetInnerHTML={{__html:item}}将输入文本以HTML解析
+                        return <li key={index} onClick={this.handleItemDele.bind(this,index)} dangerouslySetInnerHTML={{__html:item}}></li>
                     })
                 }
             </ul>
