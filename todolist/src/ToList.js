@@ -21,7 +21,12 @@ class ToList extends Component{
             htmlFor='insert'等于for，点击相当于点击了id=insert的元素
             */}
             <label htmlFor='insert'>输入内容</label>
-            <input id='insert' className="input" value={this.state.inputValue} onChange={this.handleInputChange}/><button onClick={this.handBtnClick}>提交</button>
+            <input id='insert'
+                   className="input"
+                   value={this.state.inputValue}
+                   onChange={this.handleInputChange}
+                   ref={(input)=>{this.input=input}}
+            /><button onClick={this.handBtnClick}>提交</button>
             <ul>
                 <li>英语</li>
                 <li>{this.state.inputValue}</li>
@@ -37,14 +42,14 @@ class ToList extends Component{
             //<ToItem content={item}/>通过属性来向子组件传递数据
             return (
                 /*bind(this)将父组件的this绑定给子组件*/
-                <ToItem key={index} content={item} index={index} handleItemDele={this.handleItemDele}/>
+                <ToItem key={item} content={item} index={index} handleItemDele={this.handleItemDele}/>
             )
         })
     }
-    handleInputChange(e){
+    handleInputChange(){
         //this.state.inputValue=e.target.value;
-        //通过setState方法更改state数据
-        const value=e.target.value;
+        //通过setState方法更改state数据,用this.input代替e.target
+        const value=this.input.value;
         this.setState(()=>({
             inputValue:value
         }));
