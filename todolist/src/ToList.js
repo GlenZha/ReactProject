@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from "react";
 import './style.css';
 //Fragment占位符，可以让标签隐藏掉，少个包裹的标签
+import ToItem from "./ToItem";
 class ToList extends Component{
     constructor(props){
         super(props);
@@ -22,7 +23,10 @@ class ToList extends Component{
                 {
                     this.state.list.map((item,index)=>{
                         //dangerouslySetInnerHTML={{__html:item}}将输入文本以HTML解析
-                        return <li key={index} onClick={this.handleItemDele.bind(this,index)} dangerouslySetInnerHTML={{__html:item}}></li>
+                        //<li key={index} onClick={this.handleItemDele.bind(this,index)} dangerouslySetInnerHTML={{__html:item}}></li>
+                        return (<div>
+                            <ToItem content={item}/>
+                        </div>)
                     })
                 }
             </ul>
