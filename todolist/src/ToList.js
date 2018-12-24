@@ -24,8 +24,10 @@ class ToList extends Component{
                     this.state.list.map((item,index)=>{
                         //dangerouslySetInnerHTML={{__html:item}}将输入文本以HTML解析
                         //<li key={index} onClick={this.handleItemDele.bind(this,index)} dangerouslySetInnerHTML={{__html:item}}></li>
+                        //<ToItem content={item}/>通过属性来向子组件传递数据
                         return (<div>
-                            <ToItem content={item}/>
+                            {/*bind(this)将父组件的this绑定给子组件*/}
+                            <ToItem content={item} index={index} handleItemDele={this.handleItemDele.bind(this)}/>
                         </div>)
                     })
                 }
