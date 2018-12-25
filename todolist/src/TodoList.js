@@ -3,6 +3,7 @@ import React,{Component} from "react";
 import 'antd/dist/antd.css'
 import {Input,Button,List} from 'antd'
 import store from './store/index'
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM} from './store/actionTypes'
 
 
 class TodoList extends  Component{
@@ -16,7 +17,7 @@ class TodoList extends  Component{
         store.subscribe(this.handleStoreChange);
 
         console.log(this.state);
-    }
+    };
     render() {
         return(<div style={{marginLeft:'100px'}}><div>
             <Input placeholder='todo info'
@@ -29,27 +30,34 @@ class TodoList extends  Component{
                 style={{width:'300px',marginTop:'20px'}}
                 bordered
                 dataSource={this.state.list}
-                renderItem={item => (<List.Item>{item}</List.Item>)}
+                renderItem={(item,index) => (<List.Item onClick={this.handleItemClick.bind(this,index)}>{item}</List.Item>)}
             />
         </div>)
-    }
+    };
     handleInputChange(e){
             //告诉store要做什么
             const action={
-                type:'change_input_value',
+                type:CHANGE_INPUT_VALUE,
                 value:e.target.value
             };
             store.dispatch(action);
-    }
+    };
     handleStoreChange(){
             this.setState(store.getState())
-    }
+    };
     handleBtnClick(){
         const action={
-            type:'add_todo_item',
+            type:ADD_TODO_ITEM,
             //value:e.target.value
         };
         store.dispatch(action);
-    }
+    };
+    handleItemClick(index){
+        const action={
+            type:DELE_TODO_ITEM,
+            itemIndex:index
+        };
+        store.dispatch(action);
+    };
 }
 export  default TodoList;
