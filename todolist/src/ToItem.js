@@ -11,6 +11,12 @@ class ToItem extends Component{
         //绑定this
         this.handleClick=this.handleClick.bind(this);
     }
+    //子组件不会因为父组件render执行而重新渲染
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return nextProps.content !== this.content;
+
+    }
+
     render() {
         //子组件通过属性接受数据
         return <div onClick={this.handleClick}>{this.props.content}</div>

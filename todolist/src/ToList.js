@@ -1,4 +1,5 @@
 import React,{Component,Fragment} from "react";
+//import axios from 'axios'
 import './style.css';
 //Fragment占位符，可以让标签隐藏掉，少个包裹的标签
 import ToItem from "./ToItem";
@@ -35,6 +36,10 @@ class ToList extends Component{
             <Test content={this.state.inputValue}/>
         </Fragment>)
     }
+    componentDidMount() {
+                //ajax
+    }
+
     getToItem(){
        return this.state.list.map((item,index)=>{
             //dangerouslySetInnerHTML={{__html:item}}将输入文本以HTML解析
@@ -57,7 +62,7 @@ class ToList extends Component{
         //     inputValue:e.target.value,
         //     }
         // );
-        console.log(e.target.value);
+        console.log(value.value);
     }
     handBtnClick(){
             // this.setState({
