@@ -3,7 +3,7 @@ import React,{Component} from "react";
 import 'antd/dist/antd.css'
 import store from './store/index'
 import TodoListUI from './TodoListUI'
-import {getInputChangeAction,getAddItemAction,getDeleteItemAction,getTodoList} from './store/actionCreators';
+import {getInputChangeAction,getAddItemAction,getDeleteItemAction,getInitList} from './store/actionCreators';
 
 
 class TodoList extends  Component{
@@ -27,17 +27,23 @@ class TodoList extends  Component{
                             handleItemClick={this.handleItemClick}/>)
     }
     componentDidMount() {
-            /*axios.get('/list.json').then((res)=>{
-                const data=res.data;
-                const action=initListAction(data);
-                console.log(data);
-                store.dispatch(action);
-                console.log(res.data);
-            });*/
-        //    getTodoList返回的是一个函数
+         //saga进行ajax请求
+        const action=getInitList();
+        //不但redux可以接受到，经过index配置，sagas也可以接受到action
+        store.dispatch(action);
+
+        /*//正常的ajax请求
+         axios.get('/list.json').then((res)=>{
+              const data=res.data;
+              const action=initListAction(data);
+              store.dispatch(action);
+          });*/
+
+        /*//redux-thunk进行ajax请求
+        //getTodoList返回的是一个函数
         const action=getTodoList();
         //自动执行这个函数
-        store.dispatch(action);
+        store.dispatch(action);*/
     }
 
     handleInputChange(e){
