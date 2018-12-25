@@ -10,6 +10,11 @@ class TodoList extends  Component{
         super(props);
         this.state=store.getState();
         this.handleInputChange=this.handleInputChange.bind(this);
+        this.handleStoreChange=this.handleStoreChange.bind(this);
+        this.handleBtnClick=this.handleBtnClick.bind(this);
+        //当store改变时，触发里面的handleStoreChange方法
+        store.subscribe(this.handleStoreChange);
+
         console.log(this.state);
     }
     render() {
@@ -18,7 +23,7 @@ class TodoList extends  Component{
                    value={this.state.inputValue}
                    onChange={this.handleInputChange}
                    style={{width:"300px",marginRight:"50px"}}/>
-            <Button  type={"primary"}>提交</Button>
+            <Button onClick={this.handleBtnClick} type={"primary"}>提交</Button>
             </div>
             <List
                 style={{width:'300px',marginTop:'20px'}}
@@ -29,7 +34,22 @@ class TodoList extends  Component{
         </div>)
     }
     handleInputChange(e){
-        console.log(e.target.value);
+            //告诉store要做什么
+            const action={
+                type:'change_input_value',
+                value:e.target.value
+            };
+            store.dispatch(action);
+    }
+    handleStoreChange(){
+            this.setState(store.getState())
+    }
+    handleBtnClick(){
+        const action={
+            type:'add_todo_item',
+            //value:e.target.value
+        };
+        store.dispatch(action);
     }
 }
 export  default TodoList;
