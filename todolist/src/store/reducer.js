@@ -27,7 +27,7 @@ export default (state=defaultState,action)=>{
     if(action.type===DELE_TODO_ITEM){
         //深复制一个state
         const newState=JSON.parse(JSON.stringify(state));
-        newState.list.splice(action.itemIndex,1);
+        newState.list.splice(action.index,1);
         //返回个store
         return newState;
     }
