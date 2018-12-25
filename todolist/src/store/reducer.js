@@ -1,5 +1,5 @@
 //笔记本
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM} from './actionTypes'
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM,INIT_LIST_ACTION} from './actionTypes'
 //默认第一次穿的值
 const defaultState={
     inputValue:'',
@@ -29,6 +29,11 @@ export default (state=defaultState,action)=>{
         const newState=JSON.parse(JSON.stringify(state));
         newState.list.splice(action.index,1);
         //返回个store
+        return newState;
+    }
+    if(action.type===INIT_LIST_ACTION){
+        const newState=JSON.parse(JSON.stringify(state));
+        newState.list=action.data;
         return newState;
     }
     return state;
