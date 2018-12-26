@@ -21,19 +21,29 @@ import {connect} from 'react-redux'
 
 class Header extends Component{
     getListArea(){
-        const {focused,list} =this.props;
-        if (focused){
-            return(<SearchInfo>
+        const {mouseIn,focused,list,page,totalPage,handleMouseEnter,handleMouseLeave,handleChangePage} =this.props;
+        const newList=list.toJS();
+        const pageList=[];
+
+        if(newList.length){
+            for (let i=(page-1)*10;i<page*10;i++){
+                if(newList[i]){
+                    pageList.push(
+                        <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+                    )
+                }
+            }
+        }
+
+        
+        if (focused||mouseIn){
+            return(<SearchInfo onMouseEnter={handleMouseEnter}
+                               onMouseLeave={handleMouseLeave}>
                 <SearchInfoTitle>
                     热门搜索
-                    <SearchInfoSwtich>换一批</SearchInfoSwtich>
+                    <SearchInfoSwtich onClick={()=>{handleChangePage(page,totalPage)}}>换一批</SearchInfoSwtich>
                     <SearchInfoList>
-
-                        {
-                            list.map((item)=>{
-                                return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
-                            })
-                        }
+                        {pageList}
                     </SearchInfoList>
                 </SearchInfoTitle>
             </SearchInfo>)
@@ -42,7 +52,7 @@ class Header extends Component{
         }
     }
     render() {
-        const {focused,handleInputFocus,handleInputBlur} =this.props;
+        const {focused,handleInputFocus,handleInputBlur,totalPage} =this.props;
         return (<HeaderWrapper>
             <Logo/>
             <Nav>
@@ -78,7 +88,10 @@ const mapStateToProps=(state)=>{
       return {
           //focused:state.get('header').get('focused')
           focused:state.getIn(['header','focused']),
-          list:state.getIn(['header','list'])
+          list:state.getIn(['header','list']),
+          page:state.getIn(['header','page']),
+          mouseIn:state.getIn(['header','mouseIn']),
+          totalPage:state.getIn(['header','totalPage'])
       }
 };
 const mapDispatchToProps=(dispatch)=>{
@@ -89,6 +102,19 @@ const mapDispatchToProps=(dispatch)=>{
         },
         handleInputBlur(){
             dispatch(actionCreators.searchBlur());
+        },
+        handleMouseEnter(){
+            dispatch(actionCreators.mouseEnter());
+        },
+        handleMouseLeave(){
+            dispatch(actionCreators.mouseLeave());
+        },
+        handleChangePage(page,totalPage){
+            if(page<totalPage){
+                dispatch(actionCreators.changePage(page+1));
+            }else {
+                dispatch(actionCreators.changePage(1));
+            }
         }
     }
 };
