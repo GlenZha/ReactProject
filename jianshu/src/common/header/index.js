@@ -21,7 +21,8 @@ import {connect} from 'react-redux'
 
 class Header extends Component{
     getListArea(){
-        if (this.props.focused){
+        const {focused,list} =this.props;
+        if (focused){
             return(<SearchInfo>
                 <SearchInfoTitle>
                     热门搜索
@@ -29,7 +30,7 @@ class Header extends Component{
                     <SearchInfoList>
 
                         {
-                            this.props.list.map((item)=>{
+                            list.map((item)=>{
                                 return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
                             })
                         }
@@ -41,6 +42,7 @@ class Header extends Component{
         }
     }
     render() {
+        const {focused,handleInputFocus,handleInputBlur} =this.props;
         return (<HeaderWrapper>
             <Logo/>
             <Nav>
@@ -50,16 +52,16 @@ class Header extends Component{
                 <NavItem className='right'><i className="iconfont">&#xe636;</i></NavItem>
                 <SearchWrapper>
                     <CSSTransition
-                        in={this.props.focused}
+                        in={focused}
                         timeout={300}
                         classNames={"slide"}>
-                        <NavSearch className={this.props.focused ?'focused':''}
-                                   onFocus={this.props.handleInputFocus}
-                                   onBlur={this.props.handleInputBlur}
+                        <NavSearch className={focused ?'focused':''}
+                                   onFocus={handleInputFocus}
+                                   onBlur={handleInputBlur}
                         />
                     </CSSTransition>
 
-                    <i className={this.props.focused ?'focused iconfont':'iconfont'}>&#xe60b;</i>
+                    <i className={focused ?'focused iconfont':'iconfont'}>&#xe60b;</i>
                 </SearchWrapper>
                 {this.getListArea()}
             </Nav>
