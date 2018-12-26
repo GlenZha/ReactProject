@@ -45,10 +45,10 @@ export const NavItem = styled.div`
 		color: #ea6f5a;
 	}
 `;
-/*export const SearchWrapper = styled.div`
+export const SearchWrapper = styled.div`
 	position: relative;
 	float: left;
-	.zoom {
+	.iconfont {
 		position: absolute;
 		right: 5px;
 		bottom: 5px;
@@ -61,7 +61,7 @@ export const NavItem = styled.div`
 			color: #fff;
 		}
 	}
-`;*/
+`;
 
 export const NavSearch = styled.input.attrs({
     placeholder: '搜索'
