@@ -20,20 +20,19 @@ import {connect} from 'react-redux'
 
 
 class Header extends Component{
-    getListArea(show){
-        if (show){
+    getListArea(){
+        if (this.props.focused){
             return(<SearchInfo>
                 <SearchInfoTitle>
                     热门搜索
                     <SearchInfoSwtich>换一批</SearchInfoSwtich>
                     <SearchInfoList>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
+
+                        {
+                            this.props.list.map((item)=>{
+                                return <SearchInfoItem key={item}>{item}</SearchInfoItem>;
+                            })
+                        }
                     </SearchInfoList>
                 </SearchInfoTitle>
             </SearchInfo>)
@@ -62,7 +61,7 @@ class Header extends Component{
 
                     <i className={this.props.focused ?'focused iconfont':'iconfont'}>&#xe60b;</i>
                 </SearchWrapper>
-                {this.getListArea(this.props.focused)}
+                {this.getListArea()}
             </Nav>
             <Addition>
                 <Button className='writting'><i className="iconfont">&#xe62d;</i>写文章</Button>
@@ -76,13 +75,15 @@ class Header extends Component{
 const mapStateToProps=(state)=>{
       return {
           //focused:state.get('header').get('focused')
-          focused:state.getIn(['header','focused'])
+          focused:state.getIn(['header','focused']),
+          list:state.getIn(['header','list'])
       }
 };
 const mapDispatchToProps=(dispatch)=>{
     return {
         handleInputFocus(){
             dispatch(actionCreators.searchFocus());
+            dispatch(actionCreators.getList());
         },
         handleInputBlur(){
             dispatch(actionCreators.searchBlur());
