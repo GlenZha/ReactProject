@@ -117,6 +117,15 @@ export const SearchInfoTitle=styled.div`
 export const SearchInfoSwtich=styled.span`
     float:right;
     font-size:13px;
+    cursor:pointer;
+    .spin{
+        font-size:12px;
+        margin-right:3px;
+        display:block;
+        float:left;
+        transition:all .3s ease-in;
+        transform-origin:center center;
+    }
 `;
 export const SearchInfoList=styled.div`
 	overflow: hidden;
