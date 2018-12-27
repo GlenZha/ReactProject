@@ -16,10 +16,11 @@ class App extends Component {
                 <Globalstyle/>
                 <Iconfont/>
         <Provider store={store}>
-            <Header/>
+
             {/*在这里实现路由*/}
             <BrowserRouter>
                 <div>
+                    <Header/>
                 <Route path={'/'} exact component={Home}/>
                 <Route path={'/detail'} exact component={Detail}/>
                 </div>

@@ -34,7 +34,7 @@
     }],
     "recommendList":[{
       "id":1,
-      "imgUrl":"../../../statics/01.png"
+      "imgUrl":"http://cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png"
     },{
       "id":2,
       "imgUrl":"../../../statics/02.png"
