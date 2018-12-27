@@ -11,7 +11,7 @@ const defaultState=fromJS({
 });
 
 export default (state=defaultState,action)=>{
-    switch (action.type) {
+    switch(action.type) {
         case constants.SEARCH_FOCUS:
             return state.set('focused',true);
         case constants.SEARCH_BLUR:
@@ -26,9 +26,9 @@ export default (state=defaultState,action)=>{
             return state.set('mouseIn',true);
         case constants.MOUSE_LEAVE:
             return state.set('mouseIn',false);
-            break;
         case constants.CHANGE_PAGE:
-            return state.set('page',action.page)
+            return state.set('page',action.page);
+        default:
+            return state;
     }
-    return state;
 }

@@ -55,7 +55,7 @@ class Header extends Component{
         }
     }
     render() {
-        const {focused,handleInputFocus,handleInputBlur,totalPage,list} =this.props;
+        const {focused,handleInputFocus,handleInputBlur,list} =this.props;
         return (<HeaderWrapper>
             <Logo/>
             <Nav>
