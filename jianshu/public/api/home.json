@@ -34,19 +34,19 @@
     }],
     "recommendList":[{
       "id":1,
-      "imgUrl":"require('../../../statics/01.png')"
+      "imgUrl":"../../../statics/01.png"
     },{
       "id":2,
-      "imgUrl":"require('../../../statics/02.png')"
+      "imgUrl":"../../../statics/02.png"
     },{
       "id":3,
-      "imgUrl":"require('../../../statics/03.png')"
+      "imgUrl":"../../../statics/03.png"
     },{
       "id":4,
-      "imgUrl":"require('../../../statics/04.png')"
+      "imgUrl":"../../../statics/04.png"
     },{
       "id":5,
-      "imgUrl":"require('../../../statics/05.png')"
+      "imgUrl":"require('../statics/05.png')"
     }]
   }
 }

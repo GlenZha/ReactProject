@@ -8,6 +8,11 @@ const changHomeData = (result) => ({
     articleList: result.articleList,
     recommendList: result.recommendList
 });
+const addHomeList=(list,nextPage)=>({
+    type: constants.ADD_ARTICLE_LIST,
+    list: fromJS(list),
+    nextPage
+});
 export const getHomeInfo = () => {
     return (dispatch) => {
         axios.get('/api/home.json').then((res) => {
@@ -15,4 +20,12 @@ export const getHomeInfo = () => {
             dispatch(changHomeData(result));
         });
     }
-}
+};
+export const getMoreList = (page) => {
+    return (dispatch) => {
+        axios.get('/api/homeList.json?page='+page).then((res) => {
+            const result = res.data.data;
+            dispatch(addHomeList(result,page+1));
+        });
+    }
+};
