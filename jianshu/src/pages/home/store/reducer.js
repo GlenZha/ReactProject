@@ -2,57 +2,20 @@ import {fromJS} from 'immutable';
 //immutable库创建immutable对象
 
 const defaultState=fromJS({
-    topicList:[{
-        id:1,
-        title:'社会热点',
-        imgUrl:'//upload.jianshu.io/collections/images/4/sy_20091020135145113016.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120/format/webp'
-    }],
-    articleList:[{
-        id:2,
-        title: '戏红人不红的「鲜肉」终于出头',
-        desc:'如果说有什么不过时的人设的话。 Sir最钟情的一款，“冷硬派侦探”（hard-boiled）。 他们又冷又硬，大多数情况离死不远。 好...',
-        imgUrl: '//upload-images.jianshu.io/upload_images/1211570-2ea6c8426677e615?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp'
-    },{
-        id:3,
-        title: '戏红人不红的「鲜肉」终于出头',
-        desc:'如果说有什么不过时的人设的话。 Sir最钟情的一款，“冷硬派侦探”（hard-boiled）。 他们又冷又硬，大多数情况离死不远。 好...',
-        imgUrl: '//upload-images.jianshu.io/upload_images/1211570-2ea6c8426677e615?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp'
-    },{
-        id:4,
-        title: '戏红人不红的「鲜肉」终于出头',
-        desc:'如果说有什么不过时的人设的话。 Sir最钟情的一款，“冷硬派侦探”（hard-boiled）。 他们又冷又硬，大多数情况离死不远。 好...',
-        imgUrl: '//upload-images.jianshu.io/upload_images/1211570-2ea6c8426677e615?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp'
-    },{
-        id:5,
-        title: '戏红人不红的「鲜肉」终于出头',
-        desc:'如果说有什么不过时的人设的话。 Sir最钟情的一款，“冷硬派侦探”（hard-boiled）。 他们又冷又硬，大多数情况离死不远。 好...',
-        imgUrl: '//upload-images.jianshu.io/upload_images/1211570-2ea6c8426677e615?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp'
-    },{
-        id:6,
-        title: '戏红人不红的「鲜肉」终于出头',
-        desc:'如果说有什么不过时的人设的话。 Sir最钟情的一款，“冷硬派侦探”（hard-boiled）。 他们又冷又硬，大多数情况离死不远。 好...',
-        imgUrl: '//upload-images.jianshu.io/upload_images/1211570-2ea6c8426677e615?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp'
-    }],
-    recommendList:[{
-        id:1,
-        imgUrl:require('../../../statics/01.png')
-    },{
-        id:2,
-        imgUrl:require('../../../statics/02.png')
-    },{
-        id:3,
-        imgUrl:require('../../../statics/03.png')
-    },{
-        id:4,
-        imgUrl:require('../../../statics/04.png')
-    },{
-        id:5,
-        imgUrl:require('../../../statics/05.png')
-    },]
+    topicList:[],
+    articleList:[],
+    recommendList:[]
 });
 
 export default (state=defaultState,action)=>{
     switch (action.type) {
+        case 'change_home_data':
+            return state.merge({
+                topicList: fromJS(action.topicList),
+                articleList: fromJS(action.articleList),
+                recommendList: fromJS(action.recommendList)
+            });
+        default:
+       return state;
     }
-    return state;
 }
