@@ -7,6 +7,8 @@ class Detail extends PureComponent {
     render() {
         //获取传过来的id
         //console.log(this.props.match.params.id);
+        //用get来传值
+        //console.log(this.props.location.search);
         return (
             <DetailWrapper>
                 <Header>{this.props.title}</Header>
