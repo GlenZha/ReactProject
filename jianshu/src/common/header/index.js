@@ -37,7 +37,7 @@ class Header extends Component{
             }
         }
 
-        
+
         if (focused||mouseIn){
             return(<SearchInfo onMouseEnter={handleMouseEnter}
                                onMouseLeave={handleMouseLeave}>
@@ -108,8 +108,12 @@ const mapStateToProps=(state)=>{
 const mapDispatchToProps=(dispatch)=>{
     return {
         handleInputFocus(list){
-            (list.size===0)&&dispatch(actionCreators.searchFocus());
-            dispatch(actionCreators.getList());
+            if (list.size===0){
+                dispatch(actionCreators.searchFocus());
+                dispatch(actionCreators.getList());
+            } else {
+                dispatch(actionCreators.searchFocus());
+            }
         },
         handleInputBlur(){
             dispatch(actionCreators.searchBlur());
